@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock Paper Scissors</title>
+    <style>
+    body {
+        background-color: black;
+        font-family: 'Arial', sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+
+    #main {
+        max-width: 900px;
+        margin: 0 auto; 
+        padding: 20px;
+        background-color: black;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        text-align: center; 
+    }
+
+    h1 {
+        color: orange;
+        font-size: 36px;
+    }
+
+    .player-container {
+        display: flex;
+        justify-content: center; 
+        gap: 20px; 
+    }
+
+    .player {
+        flex: 1; 
+        max-width: 100%;
+        text-align: center;
+    }
+
+    .player img {
+        width: 150px;
+        height: 150px;
+        border-radius: 10px;
+        margin-bottom: 20px;
+    }
+
+    .score {
+        font-size: 24px;
+        color: orange;
+        margin-bottom: 20px;
+    }
+
+    .vs {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .vs p {
+        color: orange;
+        font-size: 24px;
+        margin: 10px 0;
+    }
+
+    #randomButton {
+        background-color: orange;
+        color: black;
+        border: none;
+        padding: 10px 20px;
+        font-size: 18px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    #randomButton:hover {
+        background-color: darkorange;
+    }
+
+    #winner {
+        font-size: 28px;
+        color: greenyellow;
+        margin-top: 20px;
+    }
+    </style>
+</head>
+<body>
+    <div id="main">
+        <h1>Rock-Paper-Scissors</h1>
+    
+        <div class="player-container">
+            <div class="player">
+                <img id="display1" src="" alt="Player 1's Choice">
+                <p class="score">YOU: <span id="score1">0</span></p>
+            </div>
+            <div class="vs">
+                <p>V.S</p>
+                <button id="randomButton" onclick="JakEnPoy()">FIGHT</button>
+            </div>
+
+            <div class="player">
+                <img id="display2" src="" alt="Player 2's Choice">
+                <p class="score">COMPUTER: <span id="score2">0</span></p>
+            </div>
+        </div>
+        <p id="winner"></p>
+    </div>
+
+    <script>
+        const randomChoices = ["rock", "paper", "scissors"];
+        let score1 = 0;
+        let score2 = 0;
+    
+        function JakEnPoy() {
+            if (score1 >= 5 || score2 >= 5) {
+                return; 
+            }
+    
+            const display1 = document.getElementById("display1");
+            const display2 = document.getElementById("display2");
+            const scoredisplay1 = document.getElementById("score1");
+            const scoredisplay2 = document.getElementById("score2");
+            const winnerDisplay = document.getElementById("winner");
+            const randomIndex = Math.floor(Math.random() * randomChoices.length);
+            const randomIndex2 = Math.floor(Math.random() * randomChoices.length);
+            const choice1 = randomChoices[randomIndex];
+            const choice2 = randomChoices[randomIndex2];
+    
+            if (choice1 === "rock") {
+                display1.src = "download__2_-removebg-preview.png";
+            } else if (choice1 === "paper") {
+                display1.src = "download__1_-removebg-preview.png";
+            } else if (choice1 === "scissors") {
+                display1.src = "download-removebg-preview.png";
+            }
+
+            if (choice2 === "rock") {
+                display2.src = "download__2_-removebg-preview.png";
+            } else if (choice2 === "paper") {
+                display2.src = "download__1_-removebg-preview.png";
+            } else if (choice2 === "scissors") {
+                display2.src = "download-removebg-preview.png";
+            }
+
+            if (choice1 === choice2) {
+    
+            } else if (
+                (choice1 === "rock" && choice2 === "scissors") ||
+                (choice1 === "paper" && choice2 === "rock") ||
+                (choice1 === "scissors" && choice2 === "paper")
+            ) {
+                score1++;
+                scoredisplay1.textContent = score1;
+            } else {
+                score2++;
+                scoredisplay2.textContent = score2;
+            }
+     
+            if (score1 >= 5) {
+                winnerDisplay.textContent = "You Won the game!";
+            } else if (score2 >= 5) {
+                winnerDisplay.textContent = "Computer has won the game!";
+            }
+        }
+    </script>
+    
+</body>
+</html>
